@@ -4,8 +4,8 @@
 
 * Truth Table of Half_Adder
 
+    ![](https://hackmd.io/_uploads/ry-kM5Gep.png)
     
-
 * Boolean Function of Half_Adder
     * $S=x \oplus y$
     * $C=x \cdot y$
