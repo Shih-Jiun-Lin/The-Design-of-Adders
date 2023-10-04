@@ -1,0 +1,83 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity ripple_adder is
+	port
+		(
+			a0: in std_logic;
+			a1: in std_logic;
+			a2: in std_logic;
+			a3: in std_logic;
+			
+			b0: in std_logic;
+			b1: in std_logic;
+			b2: in std_logic;
+			b3: in std_logic;
+			
+			c_initial: in std_logic;
+			c_final: out std_logic;
+			
+			s0: out std_logic;
+			s1: out std_logic;
+			s2: out std_logic;
+			s3: out std_logic
+		);
+end entity;
+
+architecture behavioral of ripple_adder is
+	signal carry0, carry1, carry2: std_logic;
+	component full_adder is
+		port 
+		(
+			a: in std_logic;
+			b: in std_logic;
+			ci: in std_logic;
+			sum: out std_logic;
+			co: out std_logic		
+		);
+	end component;
+	
+begin
+	full_adder0: full_adder
+		port map
+		(
+			a => a0,
+			b => b0,
+			ci => c_initial,
+			co => carry0,
+			sum => s0
+		);
+	
+	full_adder1: full_adder
+		port map
+		(
+			a => a1,
+			b => b1,
+			ci => carry0,
+			co => carry1,
+			sum => s1
+		);
+		
+	full_adder2: full_adder
+		port map
+		(
+			a => a2,
+			b => b2,
+			ci => carry1,
+			co => carry2,
+			sum => s2
+		);
+		
+	full_adder3: full_adder
+		port map
+		(
+			a => a3,
+			b => b3,
+			ci => carry2,
+			co => c_final,
+			sum => s3
+		);
+end behavioral;
+	
+	
+	
